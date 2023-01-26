@@ -38,7 +38,7 @@ const table = document.querySelector("[data-table]")
 //Update -PUT-PATCH
 //Delete -DELETE
 
-const listaClientes = () => {
+/*const listaClientes = () => {
     const promise = new Promise((resolve, reject) => {
         const http = new XMLHttpRequest();
         http.open("GET", "http://localhost:3000/perfil");
@@ -55,7 +55,12 @@ const listaClientes = () => {
 
     })
     return promise;
-};
+};*/
+
+//Fetch API
+
+const listaClientes = () => fetch("http://localhost:3000/perfil").then((respuesta) => respuesta.json());
+
 listaClientes().then((data) => {
     data.forEach((perfil) => {
         const nuevaLinea = crearNuevaLista(perfil.nombre, perfil.email);
