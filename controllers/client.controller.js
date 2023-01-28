@@ -8,7 +8,7 @@ const crearNuevaLista = (nombre, email, id) => {
   <ul class="table__button-control">
     <li>
       <a
-        href="../screens/editar_cliente.html"
+        href="../screens/editar_cliente.html?id=${id}"
         class="simple-button simple-button--edit"
         >Editar</a
       >
@@ -16,7 +16,7 @@ const crearNuevaLista = (nombre, email, id) => {
     <li>
       <button
         class="simple-button simple-button--delete"
-        type="button"
+        type="button" id="${id}"
       >
         Eliminar
       </button>
@@ -24,6 +24,12 @@ const crearNuevaLista = (nombre, email, id) => {
   </ul>
 </td>`;
     linea.innerHTML = contenido;
+    const btn = linea.querySelector("button");
+    btn.addEventListener("click", () => {
+      const id = btn.id;
+      clientServices.eliminarCliente(id).then(respuesta => {
+      }).catch(err => alert("Ocurrio un error"));
+    });
     return linea;
 };
 
@@ -38,5 +44,5 @@ clientServices.listaClientes().then((data) => {
 }).catch((error) => alert("Ocurrio un error"))
 
 const eliminarCliente = (id) => {
-
+  console.log("elimina a:", id)
 }
